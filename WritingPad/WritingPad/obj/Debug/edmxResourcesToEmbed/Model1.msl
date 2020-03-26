@@ -13,5 +13,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="NotePad">
+      <EntityTypeMapping TypeName="WritingPadModel.NotePad">
+        <MappingFragment StoreEntitySet="NotePad">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="NoteUrl" ColumnName="NoteUrl" />
+          <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+          <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="NotePadId" ColumnName="NotePadId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -14,11 +14,20 @@ namespace WritingPad
     
     public partial class AppUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AppUser()
+        {
+            this.NotePad = new HashSet<NotePad>();
+        }
+    
         public int AppUserId { get; set; }
         public string Email { get; set; }
         public string Pass { get; set; }
         public string FullName { get; set; }
         public string UserName { get; set; }
         public bool IsActive { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NotePad> NotePad { get; set; }
     }
 }

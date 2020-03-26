@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d69acb1f7bed44f6973ee47edbfbf7b3" Name="Diagram1">
         <EntityTypeShape EntityType="WritingPadModel.AppUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WritingPadModel.NotePad" Width="1.5" PointX="3" PointY="5.25" />
+        <AssociationConnector Association="WritingPadModel.FK__NotePad__AppUser__5CD6CB2B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

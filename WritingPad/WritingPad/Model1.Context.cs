@@ -26,5 +26,6 @@ namespace WritingPad
         }
     
         public virtual DbSet<AppUser> AppUser { get; set; }
+        public virtual DbSet<NotePad> NotePad { get; set; }
     }
 }

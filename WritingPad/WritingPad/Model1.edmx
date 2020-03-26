@@ -16,8 +16,37 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="NotePad">
+          <Key>
+            <PropertyRef Name="NotePadId" />
+          </Key>
+          <Property Name="NotePadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Explanation" Type="nvarchar(max)" />
+          <Property Name="AppUserId" Type="int" Nullable="false" />
+          <Property Name="NoteUrl" Type="nvarchar(max)" />
+          <Property Name="FilePath" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__NotePad__AppUser__5CD6CB2B">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="NotePad" Type="Self.NotePad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="NotePad">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="WritingPadModelStoreContainer">
           <EntitySet Name="AppUser" EntityType="Self.AppUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotePad" EntityType="Self.NotePad" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__NotePad__AppUser__5CD6CB2B" Association="Self.FK__NotePad__AppUser__5CD6CB2B">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="NotePad" EntitySet="NotePad" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -33,10 +62,41 @@
           <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NotePad" Relationship="WritingPadModel.FK__NotePad__AppUser__5CD6CB2B" FromRole="AppUser" ToRole="NotePad" />
         </EntityType>
         <EntityContainer Name="WritingPadEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AppUser" EntityType="Self.AppUser" />
+          <EntitySet Name="NotePad" EntityType="WritingPadModel.NotePad" />
+          <AssociationSet Name="FK__NotePad__AppUser__5CD6CB2B" Association="WritingPadModel.FK__NotePad__AppUser__5CD6CB2B">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="NotePad" EntitySet="NotePad" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="NotePad">
+          <Key>
+            <PropertyRef Name="NotePadId" />
+          </Key>
+          <Property Name="NotePadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AppUserId" Type="Int32" Nullable="false" />
+          <Property Name="NoteUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AppUser" Relationship="WritingPadModel.FK__NotePad__AppUser__5CD6CB2B" FromRole="NotePad" ToRole="AppUser" />
+        </EntityType>
+        <Association Name="FK__NotePad__AppUser__5CD6CB2B">
+          <End Type="WritingPadModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="WritingPadModel.NotePad" Role="NotePad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="AppUserId" />
+            </Principal>
+            <Dependent Role="NotePad">
+              <PropertyRef Name="AppUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -52,6 +112,19 @@
                 <ScalarProperty Name="Pass" ColumnName="Pass" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotePad">
+            <EntityTypeMapping TypeName="WritingPadModel.NotePad">
+              <MappingFragment StoreEntitySet="NotePad">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="NoteUrl" ColumnName="NoteUrl" />
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NotePadId" ColumnName="NotePadId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

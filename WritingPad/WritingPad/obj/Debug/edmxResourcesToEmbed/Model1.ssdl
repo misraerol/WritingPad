@@ -11,7 +11,36 @@
     <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="NotePad">
+    <Key>
+      <PropertyRef Name="NotePadId" />
+    </Key>
+    <Property Name="NotePadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="Explanation" Type="nvarchar(max)" />
+    <Property Name="AppUserId" Type="int" Nullable="false" />
+    <Property Name="NoteUrl" Type="nvarchar(max)" />
+    <Property Name="FilePath" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__NotePad__AppUser__5CD6CB2B">
+    <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+    <End Role="NotePad" Type="Self.NotePad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUser">
+        <PropertyRef Name="AppUserId" />
+      </Principal>
+      <Dependent Role="NotePad">
+        <PropertyRef Name="AppUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="WritingPadModelStoreContainer">
     <EntitySet Name="AppUser" EntityType="Self.AppUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NotePad" EntityType="Self.NotePad" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__NotePad__AppUser__5CD6CB2B" Association="Self.FK__NotePad__AppUser__5CD6CB2B">
+      <End Role="AppUser" EntitySet="AppUser" />
+      <End Role="NotePad" EntitySet="NotePad" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>
