@@ -14,9 +14,21 @@ namespace WritingPad.Controllers
         {
             db = new WritingPadEntities();
         }
+
         public ActionResult Index()
         {
-            return View();
+            if (Session["LoginUser"] != null)
+            {
+                AppUser appUser = (AppUser)Session["LoginUser"];
+
+                List<NotePad> notePadList = db.NotePad.Where(s => s.IsActive&&s.AppUserId==appUser.AppUserId).ToList();
+
+                return View(notePadList);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         [HttpGet]
@@ -53,7 +65,8 @@ namespace WritingPad.Controllers
                     Explanation=explanation,
                     NoteUrl= noteUrl,
                     AppUserId=appUser.AppUserId,
-                    FilePath=fileName
+                    FilePath=fileName,
+                    IsActive=true
                 };
 
                 db.NotePad.Add(notePad);
