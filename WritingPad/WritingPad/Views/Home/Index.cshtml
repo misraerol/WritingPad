@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    AppUser sessionUser = (AppUser)Session["LoginUser"];
+}
+
+
+@if (sessionUser != null)
+{
+    <h1>Giriş Yapan Kullanıcı: @sessionUser.FullName</h1>
+
+    <div class="form-group">
+        <a href="@Url.Action("Logout","Home")" class="btn btn-danger">Çıkış Yap</a>
+    </div>
+}
+else
+{
+    <h1>Kullanıcı Girişi Yapılmadı</h1>
+    <div class="form-group">
+        <a href="@Url.Action("Login","Home")" class="btn-danger">Giriş Yap</a>
+    </div>
+}
