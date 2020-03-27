@@ -6,7 +6,7 @@
 <br />
 <br />
 <a href="@Url.Action("Insert","NotePad")" class="btn btn-success"> Yeni Kayıt Oluştur</a>
-<table class="table table-bordered" >
+<table class="table table-bordered">
     <tbody>
         <tr>
             <td>Başlık</td>
@@ -23,6 +23,8 @@
                 <td>@notePad.Explanation</td>
                 <td><a href="@notePad.NoteUrl">@notePad.NoteUrl</a> </td>
                 <td><img src="~/Uploads/@notePad.FilePath" height="25" width="25" class="img-responsive" /></td>
+                <td><a href="@Url.Action("Update","NotePad",new {id = notePad.NotePadId })" class="btn btn-default">Düzenle</a></td>
+                <td><a href="@Url.Action("Delete","NotePad",new {id = notePad.NotePadId})" class="btn btn-danger">Sil</a></td>
             </tr>
         }
     </tbody>

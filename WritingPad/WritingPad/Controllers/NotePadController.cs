@@ -21,7 +21,7 @@ namespace WritingPad.Controllers
             {
                 AppUser appUser = (AppUser)Session["LoginUser"];
 
-                List<NotePad> notePadList = db.NotePad.Where(s => s.IsActive&&s.AppUserId==appUser.AppUserId).ToList();
+                List<NotePad> notePadList = db.NotePad.Where(s => s.IsActive && s.AppUserId == appUser.AppUserId).ToList();
 
                 return View(notePadList);
             }
@@ -45,13 +45,13 @@ namespace WritingPad.Controllers
         }
 
         [HttpPost]
-        public ActionResult Insert(string title,string explanation,string noteUrl,HttpPostedFileBase uploadFile)
+        public ActionResult Insert(string title, string explanation, string noteUrl, HttpPostedFileBase uploadFile)
         {
-            if(Session["LoginUser"] != null)
+            if (Session["LoginUser"] != null)
             {
                 AppUser appUser = (AppUser)Session["LoginUser"];
 
-                string fileName = string.Empty; 
+                string fileName = string.Empty;
 
                 if (uploadFile.FileName != null)
                 {
@@ -61,12 +61,12 @@ namespace WritingPad.Controllers
 
                 NotePad notePad = new NotePad()
                 {
-                    Title= title,
-                    Explanation=explanation,
-                    NoteUrl= noteUrl,
-                    AppUserId=appUser.AppUserId,
-                    FilePath=fileName,
-                    IsActive=true
+                    Title = title,
+                    Explanation = explanation,
+                    NoteUrl = noteUrl,
+                    AppUserId = appUser.AppUserId,
+                    FilePath = fileName,
+                    IsActive = true
                 };
 
                 db.NotePad.Add(notePad);
@@ -74,8 +74,33 @@ namespace WritingPad.Controllers
             }
             return RedirectToAction("Index", "NotePad");
         }
+        [HttpGet]
+        public ActionResult Update(int id)
+        {
+            NotePad notePad = db.NotePad.Where(s => s.NotePadId.Equals(id)).SingleOrDefault();
+            return View(notePad);
+        }
+        [HttpPost]
+        public ActionResult Update(int notePadId, string title, string explanation, string noteUrl, HttpPostedFileBase uploadFile)
+        {
 
+            NotePad notePad = db.NotePad.Where(s => s.NotePadId.Equals(notePadId)).SingleOrDefault();
+            notePad.Title = title;
+            notePad.Explanation = explanation;
+            notePad.NoteUrl = noteUrl;
+            // notePad.FilePath = uploadFile;
+            notePad.IsActive = true;
+            db.SaveChanges();
+            return RedirectToAction("Index", "NotePad");
+        }
 
+        public ActionResult Delete(int id)
+        {
+            NotePad notePad = db.NotePad.Where(s => s.NotePadId.Equals(id)).SingleOrDefault();
+            notePad.IsActive = false;
+            db.SaveChanges();
+            return RedirectToAction("Index", "NotePad");
+        }
 
     }
 }
