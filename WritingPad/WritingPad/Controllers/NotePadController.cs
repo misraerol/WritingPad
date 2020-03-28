@@ -15,6 +15,7 @@ namespace WritingPad.Controllers
             db = new WritingPadEntities();
         }
 
+
         public ActionResult Index()
         {
             if (Session["LoginUser"] != null)
@@ -77,14 +78,14 @@ namespace WritingPad.Controllers
         [HttpGet]
         public ActionResult Update(int id)
         {
-            NotePad notePad = db.NotePad.Where(s => s.NotePadId.Equals(id)).SingleOrDefault();
+            NotePad notePad = db.NotePad.Where(s => s.NotePadId==id).SingleOrDefault();
             return View(notePad);
         }
+
         [HttpPost]
         public ActionResult Update(int notePadId, string title, string explanation, string noteUrl, HttpPostedFileBase uploadFile)
         {
-
-            NotePad notePad = db.NotePad.Where(s => s.NotePadId.Equals(notePadId)).SingleOrDefault();
+            NotePad notePad = db.NotePad.Where(s => s.NotePadId==notePadId).SingleOrDefault();
             notePad.Title = title;
             notePad.Explanation = explanation;
             notePad.NoteUrl = noteUrl;
@@ -94,9 +95,10 @@ namespace WritingPad.Controllers
             return RedirectToAction("Index", "NotePad");
         }
 
+
         public ActionResult Delete(int id)
         {
-            NotePad notePad = db.NotePad.Where(s => s.NotePadId.Equals(id)).SingleOrDefault();
+            NotePad notePad = db.NotePad.Where(s => s.NotePadId==id).SingleOrDefault();
             notePad.IsActive = false;
             db.SaveChanges();
             return RedirectToAction("Index", "NotePad");
