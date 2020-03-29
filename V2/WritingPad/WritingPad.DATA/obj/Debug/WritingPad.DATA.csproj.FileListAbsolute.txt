@@ -1,0 +1,11 @@
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\bin\Debug\WritingPad.DATA.dll.config
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\bin\Debug\WritingPad.DATA.dll
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\bin\Debug\WritingPad.DATA.pdb
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\bin\Debug\EntityFramework.dll
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\bin\Debug\EntityFramework.xml
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\obj\Debug\WritingPad.DATA.csprojAssemblyReference.cache
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\obj\Debug\WritingPad.DATA.csproj.CopyComplete
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\obj\Debug\WritingPad.DATA.dll
+C:\Users\misra\source\repos\WritingPad\WritingPad.DATA\obj\Debug\WritingPad.DATA.pdb

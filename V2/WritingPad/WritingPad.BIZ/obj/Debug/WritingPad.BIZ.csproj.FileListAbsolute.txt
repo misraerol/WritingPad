@@ -1,0 +1,14 @@
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\bin\Debug\WritingPad.BIZ.dll.config
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\bin\Debug\WritingPad.BIZ.dll
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\bin\Debug\WritingPad.BIZ.pdb
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\bin\Debug\EntityFramework.dll
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\bin\Debug\WritingPad.DATA.dll
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\bin\Debug\WritingPad.DATA.pdb
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\bin\Debug\WritingPad.DATA.dll.config
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\bin\Debug\EntityFramework.xml
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\obj\Debug\WritingPad.BIZ.csprojAssemblyReference.cache
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\obj\Debug\WritingPad.BIZ.csproj.CopyComplete
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\obj\Debug\WritingPad.BIZ.dll
+C:\Users\misra\source\repos\WritingPad\WritingPad.BIZ\obj\Debug\WritingPad.BIZ.pdb

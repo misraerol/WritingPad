@@ -1,0 +1,17 @@
+﻿
+@model List<WritingPad.DATA.AppUser>
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+<br />
+
+@foreach (WritingPad.DATA.AppUser appuser in Model)
+{
+    <h1>@appuser.FullName</h1>
+    <h1>@appuser.UserName</h1>
+    <h1>@appuser.Email</h1>
+}
+
