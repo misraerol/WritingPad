@@ -54,11 +54,15 @@ namespace WritingPad.Controllers
 
                 string fileName = string.Empty;
 
-                if (uploadFile.FileName != null)
+                if (uploadFile != null)
                 {
-                    uploadFile.SaveAs(Server.MapPath("~/Uploads/") + uploadFile.FileName);
-                    fileName = uploadFile.FileName;
+                    if (uploadFile.FileName != null)
+                    {
+                        uploadFile.SaveAs(Server.MapPath("~/Uploads/") + uploadFile.FileName);
+                        fileName = uploadFile.FileName;
+                    }
                 }
+                
 
                 NotePad notePad = new NotePad()
                 {
@@ -76,32 +80,64 @@ namespace WritingPad.Controllers
             return RedirectToAction("Index", "NotePad");
         }
         [HttpGet]
-        public ActionResult Update(int id)
+        public ActionResult Update(int id=0)
         {
-            NotePad notePad = db.NotePad.Where(s => s.NotePadId==id).SingleOrDefault();
-            return View(notePad);
+            if (Session["LoginUser"] != null)
+            {
+                NotePad notePad = db.NotePad.Where(s => s.NotePadId == id).SingleOrDefault();
+                return View(notePad);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         [HttpPost]
         public ActionResult Update(int notePadId, string title, string explanation, string noteUrl, HttpPostedFileBase uploadFile)
         {
-            NotePad notePad = db.NotePad.Where(s => s.NotePadId==notePadId).SingleOrDefault();
-            notePad.Title = title;
-            notePad.Explanation = explanation;
-            notePad.NoteUrl = noteUrl;
-            // notePad.FilePath = uploadFile;
-            notePad.IsActive = true;
-            db.SaveChanges();
-            return RedirectToAction("Index", "NotePad");
+            if (Session["LoginUser"] != null)
+            {
+                NotePad notePad = db.NotePad.Where(s => s.NotePadId == notePadId).SingleOrDefault();
+                notePad.Title = title;
+                notePad.Explanation = explanation;
+                notePad.NoteUrl = noteUrl;
+                // notePad.FilePath = uploadFile;
+
+                 
+                if (uploadFile != null)
+                {
+                    if (uploadFile.FileName!=null)
+                    {
+                        uploadFile.SaveAs(Server.MapPath("~/Uploads/") + uploadFile.FileName);
+                        notePad.FilePath = uploadFile.FileName;
+                    }
+                }
+
+
+                db.SaveChanges();
+                return RedirectToAction("Index", "NotePad");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
 
         public ActionResult Delete(int id)
         {
-            NotePad notePad = db.NotePad.Where(s => s.NotePadId==id).SingleOrDefault();
-            notePad.IsActive = false;
-            db.SaveChanges();
-            return RedirectToAction("Index", "NotePad");
+            if (Session["LoginUser"] != null)
+            {
+                NotePad notePad = db.NotePad.Where(s => s.NotePadId == id).SingleOrDefault();
+                notePad.IsActive = false;
+                db.SaveChanges();
+                return RedirectToAction("Index", "NotePad");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
     }
